@@ -10,7 +10,7 @@ import { TimeManipulationService } from './services/time-manipulation.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   // mocking dummy data for this component. In real life, these values would come from an exposed API, and be managed through service calls.
   // Outlining them in the app typescript beefs up the file a lot, but is necessary to keep this lightweight.
 
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit{
   showResult: boolean;
 
   // simple error rendering flag:
-  timeError: boolean = false;
+  timeError = false;
 
   // the base pay will be used to calculate the EV of each family.
   // TODO: refactor this to its own service:
@@ -37,7 +37,10 @@ export class AppComponent implements OnInit{
   family: string;
 
   // Taking advantage of Angular/TS working together to clean up dependency injection:
-  constructor(private wageCalc: WageCalculatorService, private hourCalc: HourCalculatorService, private timeServ: TimeManipulationService) {}
+  constructor(
+    private wageCalc: WageCalculatorService,
+    private hourCalc: HourCalculatorService,
+    private timeServ: TimeManipulationService) {}
 
   // This OnInit will be UGLY. Normally it would just allow us to subscribe to some subject/observable where we'd set the values
   // of our families and times arrays. Now, however, we need to manually hook that all up.
@@ -46,22 +49,22 @@ export class AppComponent implements OnInit{
       [
         { name: 'Jetson', divisions:
           [
-            { start: 17, end: 23, EV: (15/this.base) },
-            { start: 23, end: 28, EV: (20/this.base) }
+            { start: 17, end: 23, EV: (15 / this.base) },
+            { start: 23, end: 28, EV: (20 / this.base) }
           ] },
         { name: 'Flintstone', divisions:
           [
-            { start: 17, end: 22, EV: (12/this.base) },
-            { start: 22, end: 24, EV: (8/this.base) },
-            { start: 24, end: 28, EV: (16/this.base) } ] },
+            { start: 17, end: 22, EV: (12 / this.base) },
+            { start: 22, end: 24, EV: (8 / this.base) },
+            { start: 24, end: 28, EV: (16 / this.base) } ] },
         { name: 'Seinfeld', divisions:
           [
-            { start: 17, end: 21, EV: (21/this.base) },
-            { start: 21, end: 28, EV: (15/this.base) }
+            { start: 17, end: 21, EV: (21 / this.base) },
+            { start: 21, end: 28, EV: (15 / this.base) }
           ] }
       ];
-      this.clockInTimes = [ 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3 ];
-      this.clockOutTimes = [ 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4 ];
+    this.clockInTimes = [ 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3 ];
+    this.clockOutTimes = [ 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4 ];
   }
 
   MakePrettyTime(time: number): string {
@@ -92,11 +95,11 @@ export class AppComponent implements OnInit{
     } else {
       // search the families array for the family that matches the user's selection
       // IRL this would be handled with unique IDs, not last names that could collide:
-      let chosenFamily = this.families.filter(x => x.name === this.family)[0];
-  
+      const chosenFamily = this.families.filter(x => x.name === this.family)[0];
+
       // calculate the Earned Hours value to generate wages:
-      let earnedHours = this.OnTimecardComplete(arrivalTime, departureTime, chosenFamily);
-  
+      const earnedHours = this.OnTimecardComplete(arrivalTime, departureTime, chosenFamily);
+
       // set our wage value to a newly computed total and flag our form as complete to show the result:
       this.wages = this.OnGenerateWages(earnedHours);
       this.showResult = true;
