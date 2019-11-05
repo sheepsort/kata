@@ -11,7 +11,7 @@
     </label>
     <select name="arrival" id="arrival" class="form-control" [(ngModel)]="arrival" required>
         <option *ngFor="let time of clockInTimes">
-            {{ time }}
+            {{ this.MakePrettyTime(time) }}
         </option>
     </select>
     <label for="departure">
@@ -19,7 +19,7 @@
     </label>
     <select name="departure" id="departure" class="form-control" [(ngModel)]="departure" required>
         <option *ngFor="let time of clockOutTimes">
-            {{ time }}
+            {{ this.MakePrettyTime(time) }}
         </option>
     </select>
     <hr>
