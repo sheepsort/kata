@@ -118,4 +118,23 @@ describe('HourCalculatorService', () => {
     // assert
     expect(earnedHours).toBe(1);
   })
+
+  it('should return 2 if the family has 2 divisions, each with an EV of 1, and the user works 1 hour in each', () => {
+    // arrange
+    const arrivalTime = 22;
+    const departureTime = 24;
+    const family: Family = {
+      name: 'Stark',
+      divisions: [
+        { start: 17, end: 23, EV: 1 },
+        { start: 24, end: 28, EV: 1 }
+      ]
+    };
+
+    // act
+    const earnedHours = service.OnCalculateHours(arrivalTime, departureTime, family);
+
+    // assert
+    expect(earnedHours).toBe(2);
+  })
 });
