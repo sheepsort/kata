@@ -12,6 +12,8 @@ export class HourCalculatorService {
     let value = 0;
     if (departure <= division.start) {
       return value;
+    } else if (arrival >= division.end) {
+      return value;
     }
   }
 }
