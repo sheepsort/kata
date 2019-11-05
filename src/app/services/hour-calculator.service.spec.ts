@@ -76,4 +76,16 @@ describe('HourCalculatorService', () => {
     // assert
     expect(hours).toBe(1);
   })
+
+  it('should calculate 1.1 earned hours if the user works 1 hour and the EV is 1.1', () => {
+    // arrange
+    const hours = 1;
+    const division: TimeDivision = { start: 17, end: 26, EV: 1.1 };
+
+    // act
+    const earnedHours = service.OnCalculateEV(division, hours);
+
+    // assert
+    expect(earnedHours).toBe(1.1);
+  })
 });
