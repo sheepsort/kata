@@ -2,7 +2,6 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { By } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Family } from './models/family.component';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -35,14 +34,15 @@ describe('AppComponent', () => {
    */
   // TODO: this code will end up being modified as I work forward; I don't anticipate names of IDs to persist through creation of the view.
   // TODO: that's why it's going to keep the 'x' prefix for the foreseeable future!
-  xit('should output a message to the user indicating they earned $88.00 when they work for the Flintstones from 8pm to 3am', () => {
+  it('should output a message to the user indicating they earned $88.00 when they work for the Flintstones from 8pm to 3am', async(() => {
     // arrange
+    fixture.detectChanges();
     // act
     const family = fixture.debugElement.query(By.css('select[id="family"]'));
     family.nativeElement.click();
     fixture.detectChanges();
 
-    const flintstone = fixture.debugElement.queryAll(By.css('option')).filter(x => x.nativeElement.value == 'Flintstone')[0];
+    const flintstone = fixture.debugElement.queryAll(By.css('option')).filter(x => x.nativeElement.value === 'Flintstone')[0];
     flintstone.nativeElement.click();
     fixture.detectChanges();
 
@@ -50,7 +50,8 @@ describe('AppComponent', () => {
     clockIn.nativeElement.click();
     fixture.detectChanges();
 
-    const punchIn = fixture.debugElement.queryAll(By.css('option'))[3];
+    // There are two dropdowns with a value of 8:00pm as an option; we want to select the first one:
+    const punchIn = fixture.debugElement.queryAll(By.css('option')).filter(x => x.nativeElement.value === '8:00PM')[0];
     punchIn.nativeElement.click();
     fixture.detectChanges();
 
@@ -58,17 +59,28 @@ describe('AppComponent', () => {
     clockOut.nativeElement.click();
     fixture.detectChanges();
 
-    const punchOut = fixture.debugElement.queryAll(By.css('option'))[9];
+    // There are two dropdowns with a value of 3:00am as an option; we want to select the second one:
+    const punchOut = fixture.debugElement.queryAll(By.css('option')).filter(x => x.nativeElement.value === '3:00AM')[1];
     punchOut.nativeElement.click();
     fixture.detectChanges();
 
-    const submitButton = fixture.debugElement.query(By.css('button'));
+    const submitButton = fixture.debugElement.query(By.css('submit'));
     submitButton.nativeElement.click();
     fixture.detectChanges();
 
     const result = fixture.debugElement.query(By.css('p'));
     // assert
     expect(result.nativeElement.textContent).toMatch(/You have earned \$88.00 tonight!/);
+  }));
+
+  it('should call OnSubmit when the form is submitted', () => {
+    fixture.detectChanges();
+    spyOn(comp, 'OnSubmit');
+
+    const button = fixture.debugElement.query(By.css('button'));
+    button.nativeElement.click();
+
+    expect(comp.OnSubmit).toHaveBeenCalled();
   });
 
   it('should properly format a number to a time string with the time manipulation service', () => {
