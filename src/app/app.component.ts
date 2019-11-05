@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { WageCalculatorService } from './services/wage-calculator.service';
 import { HourCalculatorService } from './services/hour-calculator.service';
 import { Family } from './models/family.component';
-import { Constants } from './helpers/constants.component';
 import { TimeManipulationService } from './services/time-manipulation.service';
 import { ValueCalculatorService } from './services/value-calculator.service';
 
@@ -27,10 +26,6 @@ export class AppComponent implements OnInit {
 
   // simple error rendering flag:
   timeError = false;
-
-  // the base pay will be used to calculate the EV of each family.
-  // TODO: refactor this to its own service:
-  base = new Constants().BASE;
 
   // form values to be bound:
   arrival: string;
