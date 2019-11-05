@@ -10,7 +10,11 @@ export class HourCalculatorService {
   constructor() { }
 
   OnCalculateHours(arrival: number, departure: number, family: Family): number {
-    return this.OnCheckDivision(arrival, departure, family.divisions[0]);
+    let totalValue = 0;
+    family.divisions.forEach(division => {
+      totalValue += this.OnCheckDivision(arrival, departure, family.divisions[0]);
+    })
+    return totalValue;
   }
 
   /**
