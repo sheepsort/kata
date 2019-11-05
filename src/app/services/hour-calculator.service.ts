@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TimeDivision } from '../models/time-division.component';
+import { Family } from '../models/family.component';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,10 @@ import { TimeDivision } from '../models/time-division.component';
 export class HourCalculatorService {
 
   constructor() { }
+
+  OnCalculateHours(arrival: number, departure: number, family: Family): number {
+    return this.OnCheckDivision(arrival, departure, family.divisions[0]);
+  }
 
   /**
    * OnCheckDivision will determine if the user worked during a certain timespan, and give them an appropriate amount of hours as a result.
