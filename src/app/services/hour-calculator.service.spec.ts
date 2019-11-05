@@ -88,4 +88,17 @@ describe('HourCalculatorService', () => {
     // assert
     expect(earnedHours).toBe(1.1);
   })
+
+  it('should calculate 1.1 earned hours if CheckDivision is called with an EV of 1.1', () => {
+    // arrange
+    const arrivalTime = 22;
+    const departureTime = 23;
+    const division: TimeDivision = { start: 17, end: 26, EV: 1.1 };
+
+    // act
+    const earnedHours = service.CheckDivision(arrivalTime, departureTime, division);
+
+    // assert
+    expect(earnedHours).toBe(1.1);
+  })
 });
