@@ -19,7 +19,7 @@ describe('HourCalculatorService', () => {
     const division: TimeDivision = { start: 27, end: 28, EV: 1.1 };
 
     // act
-    const hours = service.CheckDivision(arrivalTime, departureTime, division);
+    const hours = service.OnCheckDivision(arrivalTime, departureTime, division);
 
     // assert
     expect(hours).toBe(0);
@@ -32,7 +32,7 @@ describe('HourCalculatorService', () => {
     const division: TimeDivision = { start: 17, end: 20, EV: 1.0 };
 
     // act
-    const hours = service.CheckDivision(arrivalTime, departureTime, division);
+    const hours = service.OnCheckDivision(arrivalTime, departureTime, division);
 
     // assert
     expect(hours).toBe(0);
@@ -45,7 +45,7 @@ describe('HourCalculatorService', () => {
     const division: TimeDivision = { start: 25, end: 27, EV: 1.0 };
 
     // act
-    const hours = service.CheckDivision(arrivalTime, departureTime, division);
+    const hours = service.OnCheckDivision(arrivalTime, departureTime, division);
 
     // assert
     expect(hours).toBe(1);
@@ -58,7 +58,7 @@ describe('HourCalculatorService', () => {
     const division: TimeDivision = { start: 17, end: 23, EV: 1.0 };
 
     // act
-    const hours = service.CheckDivision(arrivalTime, departureTime, division);
+    const hours = service.OnCheckDivision(arrivalTime, departureTime, division);
 
     // assert
     expect(hours).toBe(1);
@@ -71,7 +71,7 @@ describe('HourCalculatorService', () => {
     const division: TimeDivision = { start: 17, end: 26, EV: 1.0 };
 
     // act
-    const hours = service.CheckDivision(arrivalTime, departureTime, division);
+    const hours = service.OnCheckDivision(arrivalTime, departureTime, division);
 
     // assert
     expect(hours).toBe(1);
@@ -96,7 +96,7 @@ describe('HourCalculatorService', () => {
     const division: TimeDivision = { start: 17, end: 26, EV: 1.1 };
 
     // act
-    const earnedHours = service.CheckDivision(arrivalTime, departureTime, division);
+    const earnedHours = service.OnCheckDivision(arrivalTime, departureTime, division);
 
     // assert
     expect(earnedHours).toBe(1.1);
