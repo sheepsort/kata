@@ -22,7 +22,7 @@ export class HourCalculatorService {
       value = departure - arrival;
     }
 
-    return value;
+    return this.OnCalculateEV(division, value);
   }
 
   OnCalculateEV(division: TimeDivision, hours: number): number {
