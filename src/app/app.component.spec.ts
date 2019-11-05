@@ -60,4 +60,15 @@ describe('AppComponent', () => {
     // assert
     expect(result.nativeElement.textContent).toMatch(/You have earned \$88.00 tonight!/);
   })
+
+  it('should properly format a number to a time string with the time manipulation service', () => {
+    // arrange
+    const time = 17;
+
+    // act
+    const timeString = comp.MakePrettyTime(time);
+
+    // assert
+    expect(timeString).toBe('5:00PM');
+  })
 });
