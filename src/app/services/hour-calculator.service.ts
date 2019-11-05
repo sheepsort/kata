@@ -24,4 +24,8 @@ export class HourCalculatorService {
 
     return value;
   }
+
+  OnCalculateEV(division: TimeDivision, hours: number): number {
+    return division.EV * hours;
+  }
 }
