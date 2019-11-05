@@ -64,4 +64,33 @@ export class AppComponent implements OnInit{
   MakePrettyTime(time: number): string {
     return this.timeServ.OnMakeFriendlyTime(time);
   }
+
+  OnTimecardComplete(arrival: number, departure: number, family: Family): number {
+    return this.hourCalc.OnCalculateHours(arrival, departure, family);
+  }
+
+  OnGenerateWages(hours: number): number {
+    return this.wageCalc.OnCalculateWages(hours);
+  }
+
+  OnNumberifyTimes(timeString: string): number {
+    return this.timeServ.OnHandleTimecard(timeString);
+  }
+
+  OnSubmit(): void {
+    // modify the user input to easy-to-use numbers:
+    const arrivalTime = this.OnNumberifyTimes(this.arrival);
+    const departureTime = this.OnNumberifyTimes(this.departure);
+
+    // search the families array for the family that matches the user's selection
+    // IRL this would be handled with unique IDs, not last names that could collide:
+    let chosenFamily = this.families.filter(x => x.name === this.family)[0];
+
+    // calculate the Earned Hours value to generate wages:
+    let earnedHours = this.OnTimecardComplete(arrivalTime, departureTime, chosenFamily);
+
+    // set our wage value to a newly computed total and flag our form as complete to show the result:
+    this.wages = this.OnGenerateWages(earnedHours);
+    this.showResult = true;
+  }
 }
