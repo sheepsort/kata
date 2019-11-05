@@ -1,0 +1,32 @@
+<form #wageForm="ngForm" (ngSubmit)="OnSubmit()">
+    <label for="family">
+        <h3>Family</h3>
+    </label>
+    <select name="family" id="family" class="form-control" [(ngModel)]="family" required>
+        <option value="" disabled>Pick a Family!</option>
+        <option *ngFor="let family of families">{{ family.name }}</option>
+    </select>
+    <label for="arrival">
+        <h3>Arrival Time</h3>
+    </label>
+    <select name="arrival" id="arrival" class="form-control" [(ngModel)]="arrival" required>
+        <option *ngFor="let time of clockInTimes">
+            {{ time }}
+        </option>
+    </select>
+    <label for="departure">
+        <h3>Departure Time</h3>
+    </label>
+    <select name="departure" id="departure" class="form-control" [(ngModel)]="departure" required>
+        <option *ngFor="let time of clockOutTimes">
+            {{ time }}
+        </option>
+    </select>
+    <hr>
+    <button class="button" type="submit" [disabled]="!payForm.form.valid">Calculate Paycheck!</button>
+</form>
+<div *ngIf="showResult">
+    <p>
+        You have earned ${{ wages }}.00 tonight!
+    </p>
+</div>

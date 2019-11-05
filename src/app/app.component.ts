@@ -3,6 +3,7 @@ import { WageCalculatorService } from './services/wage-calculator.service';
 import { HourCalculatorService } from './services/hour-calculator.service';
 import { Family } from './models/family.component';
 import { Constants } from './helpers/constants.component';
+import { TimeManipulationService } from './services/time-manipulation.service';
 
 @Component({
   selector: 'app-root',
@@ -27,8 +28,13 @@ export class AppComponent implements OnInit{
   // TODO: refactor this to its own service:
   base = new Constants().BASE;
 
+  // form values to be bound:
+  arrival: string;
+  departure: string;
+  family: string;
+
   // Taking advantage of Angular/TS working together to clean up dependency injection:
-  constructor(private wageCalc: WageCalculatorService, private hourCalc: HourCalculatorService) {}
+  constructor(private wageCalc: WageCalculatorService, private hourCalc: HourCalculatorService, timeServ: TimeManipulationService) {}
 
   // This OnInit will be UGLY. Normally it would just allow us to subscribe to some subject/observable where we'd set the values
   // of our families and times arrays. Now, however, we need to manually hook that all up.
