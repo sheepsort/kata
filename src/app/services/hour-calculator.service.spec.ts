@@ -1,5 +1,6 @@
 import { HourCalculatorService } from './hour-calculator.service';
 import { TimeDivision } from '../models/time-division.component';
+import { Family } from '../models/family.component';
 
 describe('HourCalculatorService', () => {
   let service: HourCalculatorService;
@@ -100,5 +101,21 @@ describe('HourCalculatorService', () => {
 
     // assert
     expect(earnedHours).toBe(1.1);
+  })
+
+  it('should return 1 if the family has 1 division with an EV of 1 and the user works 1 hour', () => {
+    // arrange
+    const arrivalTime = 22;
+    const departureTime = 23;
+    const family: Family = {
+      name: 'Skywalker',
+      divisions: [ { start: 17, end: 28, EV: 1 } ]
+    };
+
+    // act
+    const earnedHours = service.OnCalculateHours(arrivalTime, departureTime, family)
+
+    // assert
+    expect(earnedHours).toBe(1);
   })
 });
