@@ -22,4 +22,15 @@ describe('TimeManipulationService', () => {
     // assert
     expect(timeString).toBe('5:00PM');
   })
+
+  it('should convert a "time" string from user form submission back to a number', () => {
+    // arrange
+    const timeString = "5:00PM";
+
+    // act
+    const time = OnHandleTimecard(timeString);
+
+    // assert
+    expect(time).toBe(17);
+  })
 });
