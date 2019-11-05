@@ -28,7 +28,7 @@ describe('TimeManipulationService', () => {
     const timeString = "5:00PM";
 
     // act
-    const time = OnHandleTimecard(timeString);
+    const time = service.OnHandleTimecard(timeString);
 
     // assert
     expect(time).toBe(17);
