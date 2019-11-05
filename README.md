@@ -1,27 +1,53 @@
-# Babysitter
+# Babysitter Code Kata
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.3.
+This project was designed as a Test-Driven Development Kata for review by Pillar's Software Artisan team.
 
-## Development server
+It was created using [Angular's CLI](https://github.com/angular/angular-cli), v. 8.3.3.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Getting Started
+To begin, please run `npm install` from the command line to install the necessary dependencies.
+To see the application in a working environment, feel free to run `ng serve` and navigate to http://localhost:4200/.
+Any changes you make to the source files will be reflected at that location.
 
-## Code scaffolding
+## Goals
+1. The emphasis of this project is on the testing suite and Red-Green-Refactor practice.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    - It can be run using `ng test`
 
-## Build
+    - The test package is built on Jasmine, and uses [Karma](https://karma-runner.github.io).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+    - It currently does not have e2e test coverage; if it did, it would use [Protractor](http://www.protractortest.org/) via `ng e2e`
 
-## Running unit tests
+2. To learn more about best practices in front-end testing, I will implement a specific TDD style known as Acceptance Test-Driven Development. Instead of test driving my services & logic as a launch point, I will begin with an integration test that queries the DOM and asserts certain results.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+    - Integration testing is my preferred method for front-end test code
 
-## Running end-to-end tests
+    - Despite normally using something like Cucumber/Gherkin for these acceptance tests, in this project I will stick to the tools baked into Angular 2+ (namely, Jasmine/TS)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+## Additional Information
+Angular is the JavaScript framework with which I have the most familiarity, and I feel strongly that Jasmine (and by extension Jest) is an excellent testing tool.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+For anyone who has not worked with TypeScript extensively, I can't recommend it highly enough. The dynamic nature of JavaScript combined with type safety provides a genuinely enjoyable dev experience.
+
+The application is lacking in any polish; the next step in fleshing this project out would likely include a quick installation of Bootstrap 4.
+I would also add additional test coverage in the form of e2e testing. Lastly, I would add a backend to handle storing the families, wages, and hours, along with some sort of middleware to expose/consume that data.
+
+## Process Walkthrough
+Here, I will outline a general guide to the process for building this application:
+
+1. Think through what services will be required for the application to run successfully. We want to:
+    - Display some options for clocking in and out
+    - Calculate the number of hours worked based on user inputs
+    - Calculate the amount of money earned
+    - Render a nice display of that amount for the user
+2. Plot out the general layout for the app. We need:
+    - A way to select the time the user punches in and out
+    - A dropdown for the user to choose which family they're working with that evening
+    - An output showing the total they've earned for the evening
+3. Write our acceptance test , where we:
+    - Fully render the DOM and interact as a user
+    - Pick some options for clocking in and out
+    - Assert the user will have made a pre-determined amount of money
+4. From there, we will be able to test-drive the services and build the view layer so our acceptance test passes!
