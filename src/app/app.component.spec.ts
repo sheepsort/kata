@@ -35,7 +35,7 @@ describe('AppComponent', () => {
    */
   //TODO: this code will end up being modified as I work forward; I don't anticipate names of IDs to persist through my creation of the view.
   //TODO: that's why it's going to keep the 'x' prefix for the foreseeable future!
-  xit('should output a message to the user indicating they earned $88.00 when they work for the Flintstones from 8pm to 3am', () => {
+  it('should output a message to the user indicating they earned $88.00 when they work for the Flintstones from 8pm to 3am', () => {
     // arrange
     // act
     const family = fixture.debugElement.query(By.css('select[id="family"]'));
@@ -60,6 +60,10 @@ describe('AppComponent', () => {
 
     const punchOut = fixture.debugElement.queryAll(By.css('option'))[9];
     punchOut.nativeElement.click();
+    fixture.detectChanges();
+    
+    const submitButton = fixture.debugElement.query(By.css('button'));
+    submitButton.nativeElement.click();
     fixture.detectChanges();
 
     const result = fixture.debugElement.query(By.css('p'));
@@ -93,5 +97,28 @@ describe('AppComponent', () => {
 
     // assert
     expect(error.nativeElement.textContent).toMatch(/Please select a departure time that is later than your arrival./);
+  })
+
+  it('should call OnSubmit when the button is clicked', () => {
+    // arrange
+    spyOn(comp, 'OnSubmit');
+    const submitButton = fixture.debugElement.query(By.css('button'));
+    
+    // act
+    submitButton.nativeElement.click();
+
+    // assert
+    expect(comp.OnSubmit).toHaveBeenCalled();
+  })
+
+  it('should be invalid when no values are set', () => {
+    // arrange    
+    //act
+    comp.wageForm.controls['family'].setValue('');
+    comp.wageForm.controls['arrival'].setValue('');
+    comp.wageForm.controls['departure'].setValue('');
+
+    // assert
+    expect(comp.wageForm.valid).toBeFalsy();
   })
 });
