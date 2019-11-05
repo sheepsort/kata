@@ -19,7 +19,7 @@ describe('WageCalculatorService', () => {
     const earnedHours = 10;
 
     // act
-    const wages = service.CalculateWages(earnedHours);
+    const wages = service.OnCalculateWages(earnedHours);
 
     // assert
     expect(wages).toBe(80);
