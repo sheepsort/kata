@@ -34,7 +34,7 @@ export class AppComponent implements OnInit{
   family: string;
 
   // Taking advantage of Angular/TS working together to clean up dependency injection:
-  constructor(private wageCalc: WageCalculatorService, private hourCalc: HourCalculatorService, timeServ: TimeManipulationService) {}
+  constructor(private wageCalc: WageCalculatorService, private hourCalc: HourCalculatorService, private timeServ: TimeManipulationService) {}
 
   // This OnInit will be UGLY. Normally it would just allow us to subscribe to some subject/observable where we'd set the values
   // of our families and times arrays. Now, however, we need to manually hook that all up.
@@ -59,5 +59,9 @@ export class AppComponent implements OnInit{
       ];
       this.clockInTimes = [ 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3 ];
       this.clockOutTimes = [ 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4 ];
+  }
+
+  MakePrettyTime(time: number): string {
+    return this.timeServ.OnMakeFriendlyTime(time);
   }
 }
