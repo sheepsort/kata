@@ -4,6 +4,7 @@ import { HourCalculatorService } from './services/hour-calculator.service';
 import { Family } from './models/family.component';
 import { Constants } from './helpers/constants.component';
 import { TimeManipulationService } from './services/time-manipulation.service';
+import { ValueCalculatorService } from './services/value-calculator.service';
 
 @Component({
   selector: 'app-root',
@@ -40,7 +41,8 @@ export class AppComponent implements OnInit {
   constructor(
     private wageCalc: WageCalculatorService,
     private hourCalc: HourCalculatorService,
-    private timeServ: TimeManipulationService) {}
+    private timeServ: TimeManipulationService,
+    private valueCalc: ValueCalculatorService) {}
 
   // This OnInit will be UGLY. Normally it would just allow us to subscribe to some subject/observable where we'd set the values
   // of our families and times arrays. Now, however, we need to manually hook that all up.
@@ -49,18 +51,18 @@ export class AppComponent implements OnInit {
       [
         { name: 'Jetson', divisions:
           [
-            { start: 17, end: 23, EV: (15 / this.base) },
-            { start: 23, end: 28, EV: (20 / this.base) }
+            { start: 17, end: 23, EV: this.valueCalc.OnCalculateValue(15) },
+            { start: 23, end: 28, EV: this.valueCalc.OnCalculateValue(20) }
           ] },
         { name: 'Flintstone', divisions:
           [
-            { start: 17, end: 22, EV: (12 / this.base) },
-            { start: 22, end: 24, EV: (8 / this.base) },
-            { start: 24, end: 28, EV: (16 / this.base) } ] },
+            { start: 17, end: 22, EV: this.valueCalc.OnCalculateValue(12) },
+            { start: 22, end: 24, EV: this.valueCalc.OnCalculateValue(8) },
+            { start: 24, end: 28, EV: this.valueCalc.OnCalculateValue(16) } ] },
         { name: 'Seinfeld', divisions:
           [
-            { start: 17, end: 21, EV: (21 / this.base) },
-            { start: 21, end: 28, EV: (15 / this.base) }
+            { start: 17, end: 21, EV: this.valueCalc.OnCalculateValue(21) },
+            { start: 21, end: 28, EV: this.valueCalc.OnCalculateValue(15) }
           ] }
       ];
     this.clockInTimes = [ 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3 ];
