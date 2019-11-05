@@ -24,6 +24,9 @@ export class AppComponent implements OnInit{
   // show result is a flag that will enable the DOM to render feedback to the user.
   showResult: boolean;
 
+  // simple error rendering flag:
+  timeError: boolean = false;
+
   // the base pay will be used to calculate the EV of each family.
   // TODO: refactor this to its own service:
   base = new Constants().BASE;
@@ -84,16 +87,20 @@ export class AppComponent implements OnInit{
     // modify the user input to easy-to-use numbers:
     const arrivalTime = this.OnNumberifyTimes(this.arrival);
     const departureTime = this.OnNumberifyTimes(this.departure);
-
-    // search the families array for the family that matches the user's selection
-    // IRL this would be handled with unique IDs, not last names that could collide:
-    let chosenFamily = this.families.filter(x => x.name === this.family)[0];
-
-    // calculate the Earned Hours value to generate wages:
-    let earnedHours = this.OnTimecardComplete(arrivalTime, departureTime, chosenFamily);
-
-    // set our wage value to a newly computed total and flag our form as complete to show the result:
-    this.wages = this.OnGenerateWages(earnedHours);
-    this.showResult = true;
+    if (arrivalTime >= departureTime) {
+      this.timeError = true;
+    } else {
+      // search the families array for the family that matches the user's selection
+      // IRL this would be handled with unique IDs, not last names that could collide:
+      let chosenFamily = this.families.filter(x => x.name === this.family)[0];
+  
+      // calculate the Earned Hours value to generate wages:
+      let earnedHours = this.OnTimecardComplete(arrivalTime, departureTime, chosenFamily);
+  
+      // set our wage value to a newly computed total and flag our form as complete to show the result:
+      this.wages = this.OnGenerateWages(earnedHours);
+      this.showResult = true;
+      this.timeError = false;
+    }
   }
 }

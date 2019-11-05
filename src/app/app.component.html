@@ -30,3 +30,8 @@
         You have earned ${{ wages }}.00 tonight!
     </p>
 </div>
+<div *ngIf="timeError">
+    <p>
+        Please select a departure time that is later than your arrival.
+    </p>
+</div>
