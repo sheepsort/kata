@@ -78,4 +78,16 @@ describe('AppComponent', () => {
     expect(timeString).toBe('5:00PM');
   })
 
+  it('should create an error message if the arrival time is after the departure time', () => {
+    // arrange
+    comp.arrival = '3:00AM';
+    comp.departure = '11:00PM';
+
+    // act
+    comp.OnSubmit();
+    const error = fixture.debugElement.query(By.css('p'));
+
+    // assert
+    expect(error.nativeElement.textContent).toMatch(/Please select a departure time that is later than your arrival./);
+  })
 });
