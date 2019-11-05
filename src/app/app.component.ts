@@ -78,6 +78,9 @@ export class AppComponent implements OnInit{
   }
 
   OnSubmit(): void {
+    // reset the form values:
+    this.wages = 0;
+    this.showResult = false;
     // modify the user input to easy-to-use numbers:
     const arrivalTime = this.OnNumberifyTimes(this.arrival);
     const departureTime = this.OnNumberifyTimes(this.departure);

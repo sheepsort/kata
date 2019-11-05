@@ -23,7 +23,7 @@
         </option>
     </select>
     <hr>
-    <button class="button" type="submit" [disabled]="!payForm.form.valid">Calculate Paycheck!</button>
+    <button class="button" type="submit" [disabled]="wageForm.invalid">Calculate Paycheck!</button>
 </form>
 <div *ngIf="showResult">
     <p>
