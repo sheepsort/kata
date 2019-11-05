@@ -50,4 +50,17 @@ describe('HourCalculatorService', () => {
     // assert
     expect(hours).toBe(1);
   })
+
+  it('should calculate 1 hour if the user arrives with one hour remaining in the division', () => {
+    // arrange
+    const arrivalTime = 22;
+    const departureTime = 26;
+    const division: TimeDivision = { start: 17, end: 23, EV: 1.0 };
+
+    // act
+    const hours = service.CheckDivision(arrivalTime, departureTime, division);
+
+    // assert
+    expect(hours).toBe(1);
+  })
 });
