@@ -18,6 +18,8 @@ export class HourCalculatorService {
       value = departure - division.start;
     } else if (arrival < division.end && departure >= division.end) {
       value = division.end - arrival;
+    } else if (arrival >= division.start && departure <= division.end) {
+      value = departure - arrival;
     }
 
     return value;
