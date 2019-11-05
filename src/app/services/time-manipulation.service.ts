@@ -23,6 +23,8 @@ export class TimeManipulationService {
 
     if (5 <= timecard && timecard <= 11) {
       return timecard + 12;
+    } else if (timecard <= 4) {
+      return 24 + timecard;
     }
   }
 }
