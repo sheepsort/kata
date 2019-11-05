@@ -127,7 +127,7 @@ describe('HourCalculatorService', () => {
       name: 'Stark',
       divisions: [
         { start: 17, end: 23, EV: 1 },
-        { start: 24, end: 28, EV: 1 }
+        { start: 23, end: 28, EV: 1 }
       ]
     };
 
@@ -136,5 +136,26 @@ describe('HourCalculatorService', () => {
 
     // assert
     expect(earnedHours).toBe(2);
-  })
+  });
+
+  it('should return value of 13 if the user works from 8 to 4 for the Flintstone family', () => {
+    // arrange
+    const family: Family = {
+      name: 'Flintstone',
+      divisions:
+        [
+          { start: 17, end: 22, EV: 1.5 },
+          { start: 22, end: 24, EV: 1 },
+          { start: 24, end: 28, EV: 2 }
+        ]
+    };
+    const clockIn = 20;
+    const clockOut = 28;
+
+    // act
+    const expectedHours = service.OnCalculateHours(clockIn, clockOut, family);
+
+    // assert
+    expect(expectedHours).toBe(13);
+  });
 });

@@ -7,7 +7,7 @@ import { Constants } from '../helpers/constants.component';
 export class WageCalculatorService {
   basePay = new Constants().BASE;
   constructor() { }
-  
+
   OnCalculateWages(earnedHours: number): number {
     return earnedHours * this.basePay;
   }

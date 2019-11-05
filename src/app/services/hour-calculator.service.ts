@@ -12,8 +12,8 @@ export class HourCalculatorService {
   OnCalculateHours(arrival: number, departure: number, family: Family): number {
     let totalValue = 0;
     family.divisions.forEach(division => {
-      totalValue += this.OnCheckDivision(arrival, departure, family.divisions[0]);
-    })
+      totalValue += this.OnCheckDivision(arrival, departure, division);
+    });
     return totalValue;
   }
 
@@ -36,8 +36,11 @@ export class HourCalculatorService {
     } else if (arrival < division.start && departure <= division.end) {
       value = departure - division.start;
       // they arrived during and departed after this division:
-    } else if (arrival < division.end && departure >= division.end) {
+    } else if (arrival >= division.start && arrival < division.end && departure > division.end) {
       value = division.end - arrival;
+      // they arrived before and departed after this division:
+    } else if (arrival <= division.start && departure > division.end) {
+      value = division.end - division.start;
       // finally, they both arrived and departed within this division:
     } else if (arrival >= division.start && departure <= division.end) {
       value = departure - arrival;
