@@ -10,20 +10,13 @@ To see the application in a working environment, feel free to run `ng serve` and
 Any changes you make to the source files will be reflected at that location.
 
 ## Goals
-1. The emphasis of this project is on the testing suite and Red-Green-Refactor practice.
+The emphasis of this project is on the testing suite and Red-Green-Refactor practice.
 
-    - It can be run using `ng test`
+- It can be run using `ng test`
 
-    - The test package is built on Jasmine, and uses [Karma](https://karma-runner.github.io).
+- The test package is built on Jasmine, and uses [Karma](https://karma-runner.github.io).
 
-    - It currently does not have e2e test coverage; if it did, it would use [Protractor](http://www.protractortest.org/) via `ng e2e`
-
-2. To learn more about best practices in front-end testing, I will implement a specific TDD style known as Acceptance Test-Driven Development. Instead of test driving my services & logic as a launch point, I will begin with an integration test that queries the DOM and asserts certain results.
-
-    - Integration testing is my preferred method for front-end test code
-
-    - Despite normally using something like Cucumber/Gherkin for these acceptance tests, in this project I will stick to the tools baked into Angular 2+ (namely, Jasmine/TS)
-
+- It currently does not have e2e test coverage; if it did, it would use [Protractor](http://www.protractortest.org/) via `ng e2e`
 
 ## Additional Information
 Angular is the JavaScript framework with which I have the most familiarity, and I feel strongly that Jasmine (and by extension Jest) is an excellent testing tool.
@@ -46,8 +39,4 @@ Here, I will outline a general guide to the process for building this applicatio
     - A way to select the time the user punches in and out
     - A dropdown for the user to choose which family they're working with that evening
     - An output showing the total they've earned for the evening
-3. Write our acceptance test , where we:
-    - Fully render the DOM and interact as a user
-    - Pick some options for clocking in and out
-    - Assert the user will have made a pre-determined amount of money
-4. From there, we will be able to test-drive the services and build the view layer so our acceptance test passes!
+3. From there, we will be able to test-drive the services and build the view layer so our acceptance test passes!
