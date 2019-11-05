@@ -63,4 +63,17 @@ describe('HourCalculatorService', () => {
     // assert
     expect(hours).toBe(1);
   })
+
+  it('should calculate 1 hour if the user stays for one hour, and the whole hour is inside the division', () => {
+    // arrange
+    const arrivalTime = 22;
+    const departureTime = 23;
+    const division: TimeDivision = { start: 17, end: 26, EV: 1.0 };
+
+    // act
+    const hours = service.CheckDivision(arrivalTime, departureTime, division);
+
+    // assert
+    expect(hours).toBe(1);
+  })
 });
