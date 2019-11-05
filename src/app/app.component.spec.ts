@@ -80,11 +80,15 @@ describe('AppComponent', () => {
 
   it('should create an error message if the arrival time is after the departure time', () => {
     // arrange
+    fixture.detectChanges();
     comp.arrival = '3:00AM';
     comp.departure = '11:00PM';
+    comp.families = [ { name: 'Huxtable', divisions: [ { start: 17, end: 25, EV: 1 } ] } ];
+    comp.family = 'Huxtable';
 
     // act
     comp.OnSubmit();
+    fixture.detectChanges();
     const error = fixture.debugElement.query(By.css('p'));
 
     // assert
